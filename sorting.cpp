@@ -10,6 +10,7 @@ void merge_sort(int [], int, int);
 void merge(int [], int, int, int);
 void quick_sort(int [], int, int);
 int partition(int [], int, int);
+int rand_partition(int [], int, int);
 
 int main()
 {
@@ -150,9 +151,26 @@ int rand_partition(int a[], int start, int end) {
 
 void quick_sort(int a[], int start, int end) {
     if(start < end) {
-        int piv_pos = partition(a, start, end);
+        int piv_pos = rand_partition(a, start, end);
         quick_sort(a, start, piv_pos-1);
         quick_sort(a, piv_pos+1, end);
+    }
+}
+
+void counting_sort(int a[], int aux[], int out[], int n) {
+    for(int i = 0; i <= max1; i++) {
+        aux[i] = 0;
+    }
+
+    for(int j = 0; j < n; j++)
+        aux[a[j]]++;
+
+    for(int i = 1; i <= max1; i++) {
+        aux[i] = aux[i] + aux[i-1];
+        for(int j = n-1; j >= 0; j--) {
+            out[aux[a[j]]-1] = a[j];
+            aux[a[j]] = aux[a[j]]-1;
+        }
     }
 }
 
